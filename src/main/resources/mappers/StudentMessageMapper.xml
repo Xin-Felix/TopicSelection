@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="work.huangxin.source.mapper.StudentMessageMapper">
+  <resultMap id="BaseResultMap" type="work.huangxin.source.model.StudentMessage">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="student_id" jdbcType="INTEGER" property="studentId" />
+    <result column="student_code" jdbcType="VARCHAR" property="studentCode" />
+    <result column="student_password" jdbcType="VARCHAR" property="studentPassword" />
+    <result column="student_name" jdbcType="VARCHAR" property="studentName" />
+    <result column="student_major" jdbcType="VARCHAR" property="studentMajor" />
+    <result column="student_phone" jdbcType="VARCHAR" property="studentPhone" />
+    <result column="student_qq" jdbcType="VARCHAR" property="studentQq" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    student_id, student_code, student_password, student_name, student_major, student_phone, 
+    student_qq
+  </sql>
+</mapper>

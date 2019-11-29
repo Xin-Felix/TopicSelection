@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="work.huangxin.source.mapper.AdminMapper">
+  <resultMap id="BaseResultMap" type="work.huangxin.source.model.Admin">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="admin_id" jdbcType="INTEGER" property="adminId" />
+    <result column="admin_username" jdbcType="VARCHAR" property="adminUsername" />
+    <result column="admin_password" jdbcType="VARCHAR" property="adminPassword" />
+    <result column="admin_level" jdbcType="VARCHAR" property="adminLevel" />
+    <result column="admin_type" jdbcType="VARCHAR" property="adminType" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    admin_id, admin_username, admin_password, admin_level, admin_type
+  </sql>
+</mapper>

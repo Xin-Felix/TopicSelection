@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="work.huangxin.source.mapper.ChooseMessageMapper">
+  <resultMap id="BaseResultMap" type="work.huangxin.source.model.ChooseMessage">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="choose_id" jdbcType="INTEGER" property="chooseId" />
+    <result column="choose_question_id" jdbcType="INTEGER" property="chooseQuestionId" />
+    <result column="choose_student_id" jdbcType="INTEGER" property="chooseStudentId" />
+    <result column="choose_teacher_id" jdbcType="INTEGER" property="chooseTeacherId" />
+    <result column="choose_teacher_result" jdbcType="INTEGER" property="chooseTeacherResult" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    choose_id, choose_question_id, choose_student_id, choose_teacher_id, choose_teacher_result
+  </sql>
+</mapper>

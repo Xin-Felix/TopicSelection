@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="work.huangxin.source.mapper.QuestionMessageMapper">
+    <resultMap id="BaseResultMap" type="work.huangxin.source.model.QuestionMessage">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        <id column="title_id" jdbcType="INTEGER" property="titleId"/>
+        <result column="title_name" jdbcType="VARCHAR" property="titleName"/>
+        <result column="title_type" jdbcType="VARCHAR" property="titleType"/>
+        <result column="title_source" jdbcType="VARCHAR" property="titleSource"/>
+        <result column="title_background" jdbcType="VARCHAR" property="titleBackground"/>
+        <result column="title_content" jdbcType="VARCHAR" property="titleContent"/>
+        <result column="title_require" jdbcType="VARCHAR" property="titleRequire"/>
+        <result column="title_result" jdbcType="INTEGER" property="titleResult"/>
+        <result column="teacher_id" jdbcType="INTEGER" property="teacherId"/>
+        <result column="question_type" jdbcType="INTEGER" property="questionType"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        <!--
+          WARNING - @mbg.generated
+        -->
+        title_id, title_name, title_type, title_source, title_background, title_content,
+        title_require, title_result, teacher_id, question_type
+    </sql>
+    <resultMap id="getRandomMessage" type="work.huangxin.source.model.QuestionMessage">
+        <id column="title_id" jdbcType="INTEGER" property="titleId"/>
+        <result column="title_name" jdbcType="VARCHAR" property="titleName"/>
+        <result column="title_type" jdbcType="VARCHAR" property="titleType"/>
+        <result column="title_source" jdbcType="VARCHAR" property="titleSource"/>
+        <result column="title_background" jdbcType="VARCHAR" property="titleBackground"/>
+        <result column="title_content" jdbcType="VARCHAR" property="titleContent"/>
+        <result column="title_require" jdbcType="VARCHAR" property="titleRequire"/>
+        <result column="title_result" jdbcType="INTEGER" property="titleResult"/>
+        <result column="teacher_id" jdbcType="INTEGER" property="teacherId"/>
+        <association javaType="work.huangxin.source.model.TeacherMessage" property="teacherMessage">
+            <result column="teacher_name" jdbcType="VARCHAR" property="teacherName"/>
+            <result column="teacher_level" jdbcType="VARCHAR" property="teacherLevel"/>
+            <result column="teacher_direction" jdbcType="VARCHAR" property="teacherDirection"/>
+            <result column="teacher_source" jdbcType="VARCHAR" property="teacherSource"/>
+        </association>
+    </resultMap>
+    <select id="getRandomMessage" resultMap="getRandomMessage">
+   SELECT title_id,
+       title_name,
+       title_type,
+       title_source,
+       title_background,
+       title_content,
+       title_require,
+       title_result,
+       question_message.teacher_id,
+       teacher_code,
+       teacher_name,
+       teacher_level,
+       teacher_direction,
+       teacher_source
+FROM teacher_message,
+     question_message
+       LEFT JOIN choose_message ON question_message.title_id = choose_question_id
+WHERE choose_question_id IS NULL
+  AND question_message.teacher_id = teacher_message.teacher_id
+  AND title_result = 2
+AND (question_type=#{id} OR question_type=5)
+ORDER BY RAND()
+LIMIT 12
+    </select>
+    <select id="getSearchResult" resultMap="getRandomMessage">
+        SELECT title_id,
+       title_name,
+       title_type,
+       title_source,
+       title_background,
+       title_content,
+       title_require,
+       title_result,
+       question_message.teacher_id,
+       teacher_code,
+       teacher_name,
+       teacher_level,
+       teacher_direction,
+       teacher_source
+       from  teacher_message,
+     question_message
+       LEFT JOIN choose_message ON question_message.title_id = choose_question_id
+  WHERE choose_question_id IS NULL
+  AND question_message.teacher_id = teacher_message.teacher_id
+  AND title_result = 2
+  AND (question_message.question_type = #{id} OR question_message.question_type = 5)
+  AND (question_message.title_name LIKE '%${keyword}%')
+    </select>
+</mapper>
